@@ -1,15 +1,23 @@
 package main
 
-import "net/http"
+import (
+	"log"
+	"net/http"
+)
 
 func main() {
+	const filepathRoot = "."
+	const port = "8080"
 
-	mux := http.ServeMux{}
+	mux := http.NewServeMux()
+	mux.Handle("/", http.FileServer(http.Dir(filepathRoot)))
+	// mux.Handle(("/assets"), http.FileServer(http.Dir(filepathRoot+"/assets/logo.png")))
 
-	server := &http.Server{
-		Handler: &mux,
-		Addr:    ":" + "8080"}
+	srv := &http.Server{
+		Addr:    ":" + port,
+		Handler: mux,
+	}
 
-	server.ListenAndServe()
-
+	log.Printf("Serving files from %s on port: %s\n", filepathRoot, port)
+	log.Fatal(srv.ListenAndServe())
 }
