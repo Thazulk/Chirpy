@@ -8,7 +8,7 @@ func main() {
 
 	server := &http.Server{
 		Handler: &mux,
-		Addr:    ":" + "8082"}
+		Addr:    ":" + "8080"}
 
 	server.ListenAndServe()
 

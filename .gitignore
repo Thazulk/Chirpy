@@ -20,3 +20,8 @@
 # Go workspace file
 go.work
 go.work.sum
+
+# Ignore Go executables (like 'out' or binaries with no extension)
+out
+# Uncomment and edit the next line to ignore all files with no extension (use with caution)
+# *
